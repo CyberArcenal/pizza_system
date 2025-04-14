@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,24 +16,34 @@ public class PizzaOrderSystem extends JFrame {
     private JTextArea outputArea;
 
     public PizzaOrderSystem() {
-        setTitle("Home Style Pizza");
+        setTitle("Pizza Assessment System");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 500);
         setLayout(new BorderLayout(10, 10));
 
-        // Main Content Panel (3-column layout)
+        // 1. Title Panel (Malaking title na may yellow background)
+        JLabel titleLabel = new JLabel("Home Style Pizza");
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        titleLabel.setOpaque(true);
+        titleLabel.setBackground(Color.YELLOW);
+        titleLabel.setBorder(new EmptyBorder(10, 0, 10, 0)); // Padding
+        
+        // 2. Main Content Panel (3-column layout)
         JPanel mainPanel = new JPanel(new GridLayout(1, 3, 15, 15));
         mainPanel.add(createToppingsPanel());
         mainPanel.add(createSizePanel());
         mainPanel.add(createTypePanel());
 
-        // Bottom Panel
+        // 3. Bottom Panel
         JPanel bottomPanel = new JPanel(new BorderLayout(10, 10));
         bottomPanel.add(createInputPanel(), BorderLayout.NORTH);
         bottomPanel.add(createOutputPanel(), BorderLayout.CENTER);
 
+        add(titleLabel, BorderLayout.NORTH);
         add(mainPanel, BorderLayout.CENTER);
         add(bottomPanel, BorderLayout.SOUTH);
+        
         setVisible(true);
     }
     private JPanel createToppingsPanel() {
@@ -119,6 +130,11 @@ public class PizzaOrderSystem extends JFrame {
         JPanel panel = new JPanel(new BorderLayout());
         outputArea = new JTextArea(6, 40);
         outputArea.setEditable(false);
+        
+        // Yellow background styling
+        outputArea.setBackground(Color.YELLOW);
+        outputArea.setOpaque(true);
+        
         panel.add(new JScrollPane(outputArea), BorderLayout.CENTER);
         return panel;
     }
